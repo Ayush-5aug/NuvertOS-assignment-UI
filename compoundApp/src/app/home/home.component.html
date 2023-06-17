@@ -1,0 +1,32 @@
+<div class="row">
+    <div class="col" *ngFor="let compund of compoundListToDisplay">
+  <div class="card" style="width: 15rem; height: 286px;">
+    <img src="{{compund['image']}}" class="card-img-top img" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">{{compund['compundName']}}</h5>
+      <a [routerLink]="['details', compund.id]" class="btn btn-primary">Details</a>
+    </div>
+  </div>
+  </div>
+  </div> 
+  
+  
+  <div style="margin-left: 650px; margin-top: 200px;">
+  <nav aria-label="Page navigation example">
+    <ul class="pagination">
+      <li class="page-item">
+        <a class="page-link" type="button" (click)="onPreviousPage()" aria-label="Previous">
+          <span aria-hidden="true">&laquo;</span>
+        </a>
+      </li>
+      <li class="page-item"><a class="page-link" type="button" (click)="onPageChange(1)">1</a></li>
+      <li class="page-item"><a class="page-link" type="button" (click)="onPageChange(2)">2</a></li>
+      <li class="page-item"><a class="page-link" type="button" (click)="onPageChange(3)">3</a></li>
+      <li class="page-item">
+        <a class="page-link" type="button" (click)="onNextPage()" aria-label="Next">
+          <span aria-hidden="true">&raquo;</span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+  </div>

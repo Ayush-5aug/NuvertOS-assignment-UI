@@ -1,0 +1,65 @@
+<div class="card" style="width: 40rem; margin-left: 400px;">
+    <img src="{{compoundInfo['image']}}" class="card-img-top img" alt="..." style="height: 300px;">
+    <div class="card-body">
+      <h5 class="card-title">{{compoundInfo['compundName']}}</h5>
+      <p class="card-text">{{compoundInfo['compundDescription']}}</p>
+      <p class="card-text">Date Modified :- {{compoundInfo['dateModified'] | date }}</p>
+      <p class="card-text">Attribute :- <a href='{{compoundInfo["attribute"]}}' target="_blank"> Link </a></p>
+    </div>
+</div>
+
+<br>
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#staticBackdrop" style="margin-left: 600px;">
+    Edit Details
+</button>
+  
+  <!-- Modal -->
+  <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="staticBackdropLabel">Edit Compound Details</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form [formGroup]="editForm" (ngSubmit)="onSubmitForm()">
+        <div class="modal-body">
+            <div class="form-row">
+                <div class="input-field">
+                    <label>Compound Name</label>
+                    <input type="text" class="form-control" placeholder="Name of the Compound" formControlName="compoundName" name="compoundName"/>
+                    <div *ngIf="
+                        editForm.get('compoundName')?.invalid &&
+                        editForm.get('compoundName')?.touched" class="text-danger">Please enter compound name
+                    </div>
+                </div>
+                <div class="input-field">
+                    <label>Compound Description</label>
+                    <textarea class="form-control" placeholder="Enter Compound Description" id="floatingTextarea" formControlName="compoundDescription" name="compoundDescription"></textarea>
+                    <div *ngIf="
+                        editForm.get('compoundDescription')?.invalid &&
+                        editForm.get('compoundDescription')?.touched" class="text-danger">Please enter compound Description
+                    </div>
+                </div>
+                <div class="input-field">
+                    <label>Image Url</label>
+                    <input type="text" class="form-control" placeholder="Name of the Compound" formControlName="image" name="image"/>
+                    <div *ngIf="
+                        editForm.get('image')?.invalid &&
+                        editForm.get('image')?.touched" class="text-danger">Please enter image url
+                    </div>
+                </div>
+                <div class="input-field">
+                    <label>Attribute Url</label>
+                    <input type="text" class="form-control" placeholder="Name of the Compound" formControlName="attribute" name="attribute"/>
+                </div>
+              </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="closeBtn">Close</button>
+            <button type="submit" class="btn btn-primary" [disabled]="!editForm.touched || editForm.invalid">Save</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
